@@ -1,42 +1,50 @@
-import Button from "./Button";
-import MathSign from "./MathSign"
 import { useState } from "react";
 
-function Operation() {
-    const [total, setTotal] = useState(0);
+const Operation = () => {
+    const [count1, setCounter1] = useState(0);
+    const [count2, setCounter2] = useState(0);
+    const [operator, setOperator] = useState();
 
-    const sum = () => {
-        setTotal (() => { button1 }  + { button2 }  )
-    };
+    const counter1 = () => setCounter1(count1 => count1 + 1);
+    const counter2 = () => setCounter2(count2 => count2 + 1);
 
-    const subtract = () => {
-        setTotal (() => { button1 } - { button2 } )
-    };
-
-    const multiply = () => {
-        setTotal (() => { button1 } * { button2 } )
-    };
-    
-    const division = () => {
-        setTotal (() => { button1 } / { button2 } )
-        
+    function add(value1, value2) {
+        return value1 + value2;
     }
-    
-}
-return (
-    <div className="Operation">
-        <Button id='button1' className="button"></Button>
-        <MathSign> </MathSign>
-        <Button id='button2' className="button"></Button>
-        <div className="result" >
+
+    function getResult() {
+        if(operator !== null) {
+            if(operator === '+') {
+                return count1 + count2;
+            } else if (operator === '-') {
+                return count1 - count2;
+            } else if (operator === '*') {
+                return count1 * count2;
+            } else if (operator === '/') {
+                return count1 / count2;
+            }
+        }
+    }
+
+    const result = getResult();
+
+    return (
+        <div className="Operation">
+            <button id='button1' onClick={counter1}>{count1}</button>
+
+            <select onChange={(event) => setOperator(event.target.value)} id="mathsSings" className="MathsSigns">
+                <option value='+'>+</option>
+                <option value='-'>-</option>
+                <option value='*'>X</option>
+                <option value='/'>/</option>
+            </select>
+
+            <button id='button2' onClick={counter2}>{count2}</button>
             <p> = </p>
-            <p>{total}</p>
+            <p>{result}</p>
 
         </div>
-
-    </div>
-)
-
+    )
 }
 
 export default Operation;

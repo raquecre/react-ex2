@@ -13,10 +13,10 @@ function App() {
       <Nav className="Nav" />
       <Tittle className="exercise" />
       <TextInfo className="textInfo" />
-      <div className='MathOperations'>
-        <Operation />
-       
-      </div>
+
+      <Operation />
+
+
 
     </div>
   );
